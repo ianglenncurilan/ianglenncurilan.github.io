@@ -657,10 +657,14 @@ section,
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Section Title - Epic Effects
+--------------------------------------------------------------*/
 .section-title {
   text-align: center;
   padding-bottom: 60px;
   position: relative;
+  overflow: hidden;
 }
 
 .section-title h2 {
@@ -669,27 +673,37 @@ section,
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--heading-color);
+  background: linear-gradient(90deg, var(--accent-color), var(--contrast-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease-in-out;
 }
 
-.section-title h2:after {
+.section-title h2::after {
   content: "";
   position: absolute;
   display: block;
   width: 50px;
   height: 3px;
   background: var(--accent-color);
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 0;
-  margin: auto;
+  transform: translateX(-50%);
+  animation: expandLine 1s ease-in-out forwards;
 }
 
 .section-title p {
   margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease-in-out forwards;
 }
 
 /*--------------------------------------------------------------
-# Hero Section
+# Hero Section - Epic Effects
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
@@ -699,12 +713,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 1200px) {
-  .hero {
-    min-height: calc(100vh - 68px);
-  }
+  overflow: hidden;
 }
 
 .hero img {
@@ -715,23 +724,37 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  filter: brightness(70%);
+  animation: heroZoom 10s infinite alternate ease-in-out;
 }
 
 .hero .container {
   position: relative;
   z-index: 3;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .hero h2 {
   margin: 0;
   font-size: 48px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s ease-in-out forwards;
 }
 
 .hero p {
   margin: 10px 0 0 0;
   font-size: 24px;
   color: var(--heading-color);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease-in-out forwards;
 }
 
 .hero .btn-get-started {
@@ -747,12 +770,75 @@ section,
   border-radius: 50px;
   transition: 0.5s;
   margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .btn-get-started::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: 0.5s;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.hero .btn-get-started:hover::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .hero .btn-get-started:hover {
   background: color-mix(in srgb, var(--accent-color) 90%, white 20%);
 }
 
+/*--------------------------------------------------------------
+# Animations
+--------------------------------------------------------------*/
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes expandLine {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 50px;
+  }
+}
+
+@keyframes heroZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/*--------------------------------------------------------------
+# Responsive Tweaks
+--------------------------------------------------------------*/
 @media (max-width: 768px) {
   .hero h2 {
     font-size: 32px;
@@ -762,6 +848,7 @@ section,
     font-size: 18px;
   }
 }
+
 
 /*--------------------------------------------------------------
 # About Section
@@ -1428,3 +1515,27 @@ section,
 # Starter Section Section
 --------------------------------------------------------------*/
 
+.text1 {
+  font-family: monospace;
+  font-size: 24px;
+  border-right: 3px solid black;
+  width: fit-content;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 4s steps(20) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
