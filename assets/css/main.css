@@ -1543,3 +1543,11 @@ section,
     border-color: transparent;
   }
 }
+
+/* Add this CSS to color the navigation bar */
+.header {
+  background-color: #79D7BE;
+}
+
+
+
