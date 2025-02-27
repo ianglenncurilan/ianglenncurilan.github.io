@@ -1546,7 +1546,7 @@ section,
 
 /* Add this CSS to color the navigation bar */
 .header {
-  background-color: rgb(165, 159, 159);
+  background-color: rgb(217, 216, 216);
 }
 
 .service-item img {
@@ -1575,5 +1575,6 @@ section,
 }
 
 .footer {
-  background-color: rgb(165, 159, 159);
+  background-color: rgb(217, 216, 216);
 }
+
